@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
@@ -6,7 +6,10 @@ import IdContext from "../contexts/IdContext";
 
 const Signup = () => {
   const [id, setId] = useContext(IdContext);
+  const [userExists, setUserExists] = useState(null);
   const history = useHistory();
+  const userExistsErrorMessage =
+    "This user already exists. Please use a different first or last name.";
   const requiredErrorMessage = "This is required.";
   const {
     register,
@@ -18,10 +21,20 @@ const Signup = () => {
     error ? <p className="text-red-600">{error.message}</p> : null;
 
   const submit = (formData) => {
+    const currentUserLookup = JSON.parse(localStorage.getItem("lookup"));
+
+    for (const id in currentUserLookup) {
+      if (
+        formData.firstName === currentUserLookup[id].firstName &&
+        formData.lastName === currentUserLookup[id].lastName
+      ) {
+        return setUserExists({ message: userExistsErrorMessage });
+      }
+    }
+
     const id = uuidv4();
     setId(id);
     const user = { ...formData, id };
-    const currentUserLookup = JSON.parse(localStorage.getItem("lookup"));
     const newUserLookup = {
       ...currentUserLookup,
       [id]: {
@@ -37,7 +50,11 @@ const Signup = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(submit)} className="flex flex-col">
+    <form
+      onSubmit={handleSubmit(submit)}
+      className="flex flex-col w-2/3 md:w-80"
+    >
+      {displayErrorMessage(userExists)}
       <label className={errors.firstName && "text-red-600"} htmlFor="firstName">
         First Name:
       </label>
