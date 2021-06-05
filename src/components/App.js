@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Switch, Route } from "react-router-dom";
+import ProtectedRoute from "./ProtectedRoute";
 import Signup from "./Signup";
 import Login from "./Login";
 import CardList from "./CardList";
 import Header from "./Header";
+import UserDetails from "./UserDetails";
 import IdContext from "../contexts/IdContext";
 
 function App() {
@@ -14,7 +16,9 @@ function App() {
       <IdContext.Provider value={id}>
         <Header />
         <Switch>
-          <Route path="/user/:id">user</Route>
+          <ProtectedRoute path="/user/:id">
+            <UserDetails />
+          </ProtectedRoute>
           <Route path="/settings">
             <div>Settings</div>
           </Route>
