@@ -34,7 +34,7 @@ const Signup = () => {
 
     const id = uuidv4();
     setId(id);
-    const user = { ...formData, id };
+    const user = { ...formData, id, notes: [] };
     const newUserLookup = {
       ...currentUserLookup,
       [id]: {
