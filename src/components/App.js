@@ -1,9 +1,14 @@
+import { useState } from "react";
 import { Link, Switch, Route } from "react-router-dom";
 import Signup from "./Signup";
+import CardList from "./CardList";
+import IdContext from "../contexts/IdContext";
 
 function App() {
+  const id = useState("");
+
   return (
-    <div className="w-full h-screen flex justify-center items-center">
+    <div className="w-full h-screen flex justify-center items-center bg-gray-50">
       <header className="absolute left-0 top-0 w-full flex justify-between items-center bg-purple-600 text-white py-3 px-6 shadow-md">
         <Link className="text-2xl hover:opacity-50" to="/">
           <h1>Notes for Friends</h1>
@@ -20,17 +25,21 @@ function App() {
           </Link>
         </nav>
       </header>
-      <Switch>
-        <Route path="/user/:id">user</Route>
-        <Route path="/settings">
-          <div>Settings</div>
-        </Route>
-        <Route path="/login">Login</Route>
-        <Route path="/signup">
-          <Signup />
-        </Route>
-        <Route path="/">Home</Route>
-      </Switch>
+      <IdContext.Provider value={id}>
+        <Switch>
+          <Route path="/user/:id">user</Route>
+          <Route path="/settings">
+            <div>Settings</div>
+          </Route>
+          <Route path="/login">Login</Route>
+          <Route path="/signup">
+            <Signup />
+          </Route>
+          <Route path="/">
+            <CardList />
+          </Route>
+        </Switch>
+      </IdContext.Provider>
     </div>
   );
 }

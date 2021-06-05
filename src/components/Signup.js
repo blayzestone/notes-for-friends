@@ -1,8 +1,11 @@
-import { v4 as uuidv4 } from "uuid";
+import { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { v4 as uuidv4 } from "uuid";
+import IdContext from "../contexts/IdContext";
 
 const Signup = () => {
+  const [id, setId] = useContext(IdContext);
   const history = useHistory();
   const requiredErrorMessage = "This is required.";
   const {
@@ -16,6 +19,7 @@ const Signup = () => {
 
   const submit = (formData) => {
     const id = uuidv4();
+    setId(id);
     const user = { ...formData, id };
     const currentUserLookup = JSON.parse(localStorage.getItem("lookup"));
     const newUserLookup = {
