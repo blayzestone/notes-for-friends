@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import IdContext from "../contexts/IdContext";
 
 const Signup = () => {
-  const [id, setId] = useContext(IdContext);
+  const [, setId] = useContext(IdContext);
   const [userExists, setUserExists] = useState(null);
   const history = useHistory();
   const userExistsErrorMessage =

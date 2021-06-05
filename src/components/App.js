@@ -5,6 +5,7 @@ import Signup from "./Signup";
 import Login from "./Login";
 import CardList from "./CardList";
 import Header from "./Header";
+import Settings from "./Settings";
 import UserDetails from "./UserDetails";
 import IdContext from "../contexts/IdContext";
 
@@ -20,7 +21,7 @@ function App() {
             <UserDetails />
           </ProtectedRoute>
           <Route path="/settings">
-            <div>Settings</div>
+            <Settings />
           </Route>
           <Route path="/login">
             <Login />
