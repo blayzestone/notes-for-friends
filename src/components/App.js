@@ -1,9 +1,10 @@
 import { Link, Switch, Route } from "react-router-dom";
+import Signup from "./Signup";
 
 function App() {
   return (
-    <div>
-      <header className="w-full flex justify-between items-center bg-purple-600 text-white py-3 px-6 shadow-md">
+    <div className="w-full h-screen flex justify-center items-center">
+      <header className="absolute left-0 top-0 w-full flex justify-between items-center bg-purple-600 text-white py-3 px-6 shadow-md">
         <Link className="text-2xl hover:opacity-50" to="/">
           <h1>Notes for Friends</h1>
         </Link>
@@ -12,7 +13,7 @@ function App() {
             Login
           </Link>
           <Link className="hover:opacity-50" to="/signup">
-            Sign Up
+            Sign up
           </Link>
           <Link className="hover:opacity-50" to="/settings">
             Settings
@@ -21,9 +22,13 @@ function App() {
       </header>
       <Switch>
         <Route path="/user/:id">user</Route>
-        <Route path="/settings">Settings</Route>
+        <Route path="/settings">
+          <div>Settings</div>
+        </Route>
         <Route path="/login">Login</Route>
-        <Route path="/signup">Sign Up</Route>
+        <Route path="/signup">
+          <Signup />
+        </Route>
         <Route path="/">Home</Route>
       </Switch>
     </div>
