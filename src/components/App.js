@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import Signup from "./Signup";
+import Login from "./Login";
 import CardList from "./CardList";
 import Header from "./Header";
 import IdContext from "../contexts/IdContext";
@@ -17,7 +18,9 @@ function App() {
           <Route path="/settings">
             <div>Settings</div>
           </Route>
-          <Route path="/login">Login</Route>
+          <Route path="/login">
+            <Login />
+          </Route>
           <Route path="/signup">
             <Signup />
           </Route>
