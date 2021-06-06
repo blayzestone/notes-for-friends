@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import IdContext from "../contexts/IdContext";
+import Button from "./Button";
 
 const Settings = () => {
   const [id] = useContext(IdContext);
@@ -61,7 +62,7 @@ const Settings = () => {
 
         <label htmlFor="password">Password:</label>
         <input {...register("password")} type="password" id="password" />
-        <button type="submit">Save</button>
+        <Button type="submit">Save</Button>
       </form>
     </div>
   );

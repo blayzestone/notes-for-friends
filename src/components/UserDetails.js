@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import IdContext from "../contexts/IdContext";
+import Button from "./Button";
 
 const UserDetails = () => {
   const { id } = useParams();
@@ -45,13 +46,13 @@ const UserDetails = () => {
       </div>
       <form className="w-full text-center" onSubmit={sendNote}>
         <input
-          className="w-1/2"
+          className="w-1/2 mx-3"
           onChange={(e) => setNote(e.target.value)}
           value={note}
           type="text"
           placeholder="Send note"
         />
-        <button type="submit">Submit</button>
+        <Button type="submit">Send</Button>
       </form>
     </div>
   );

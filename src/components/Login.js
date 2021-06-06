@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import IdContext from "../contexts/IdContext";
+import Button from "./Button";
 
 const Login = () => {
   const history = useHistory();
@@ -64,7 +65,7 @@ const Login = () => {
         id="password"
       />
       {displayErrorMessage(errors.password)}
-      <button type="submit">Submit</button>
+      <Button type="submit">Submit</Button>
     </form>
   );
 };
